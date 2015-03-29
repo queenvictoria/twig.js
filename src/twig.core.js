@@ -724,6 +724,10 @@ var Twig = (function (Twig) {
             precompiled = params.precompiled,
             template    = null;
 
+        // If base is set, and location doesn't start with base, then prepend base to location
+        if ( params.base && location.indexOf(params.base) !== 0 ) {
+            location = params.base + '/' + location
+        }
         // Default to async
         if (async === undefined) async = true;
 

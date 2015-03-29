@@ -44,6 +44,7 @@ var Twig = (function (Twig) {
         if (params.data !== undefined) {
             return new Twig.Template({
                 data: params.data,
+                base: params.base,
                 module: params.module,
                 id:   id,
                 options: options

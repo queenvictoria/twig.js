@@ -661,6 +661,10 @@ var Twig = (function (Twig) {
                     template = file;
                 } else {
                     // Import file
+                    // This just sets path so that it uses fs not ajax
+                    if ( ! this.path ) {
+                        this.path = file;
+                    }
                     template = this.importFile(file);
                 }
 
