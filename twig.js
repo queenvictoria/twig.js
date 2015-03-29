@@ -738,6 +738,10 @@ var Twig = (function (Twig) {
             precompiled = params.precompiled,
             template    = null;
 
+        // If base is set, and location doesn't start with base, then prepend base to location
+        if ( params.base && location.indexOf(params.base) !== 0 ) {
+            location = params.base + '/' + location
+        }
         // Default to async
         if (async === undefined) async = true;
 
@@ -2598,6 +2602,10 @@ var Twig = (function (Twig) {
                     template = file;
                 } else {
                     // Import file
+                    // This just sets path so that it uses fs not ajax
+                    if ( ! this.path ) {
+                        this.path = file;
+                    }
                     template = this.importFile(file);
                 }
 
@@ -5299,6 +5307,7 @@ var Twig = (function (Twig) {
         if (params.data !== undefined) {
             return new Twig.Template({
                 data: params.data,
+                base: params.base,
                 module: params.module,
                 id:   id,
                 options: options
